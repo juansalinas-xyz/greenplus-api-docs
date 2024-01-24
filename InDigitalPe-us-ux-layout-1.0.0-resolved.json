@@ -1,0 +1,419 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Micorservicio de usabilidad us-ux-layout.",
+    "version": "1.0.8",
+    "title": "Tunki Layout InDigital",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "name": "Tunki User Team",
+      "url": "https://www.tunki.com.pe/",
+      "email": "developers@indigital.pe"
+    }
+  },
+  "host": "virtserver.swaggerhub.com",
+  "basePath": "/InDigitalPe/us-ux-layout/1.0.8",
+  "tags": [
+    {
+      "name": "Ux Layout Services",
+      "description": "Servicio de acceso al servicio layout"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/layout/home/segment": {
+      "get": {
+        "tags": [
+          "Segmento para el home personalizado"
+        ],
+        "summary": "Segmento para el home personalizado",
+        "description": "Servicio para obtener el segmento para el home personalizado",
+        "operationId": "geSegmentHome",
+        "parameters": [
+          {
+            "name": "X-User-Id",
+            "in": "header",
+            "description": "Identificador del usuario",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "X-Application",
+            "in": "header",
+            "description": "Identificador de la aplicación",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok / La solicitud ha tenido éxito, se ha creado un objeto de saldos como resultado.",
+            "schema": {
+              "$ref": "#/definitions/SegmentHomeResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request / GEN_ALL_01:Sintaxis inválida en formato, tamaño, tipo de dato, valor determinado o requerido.",
+            "schema": {
+              "$ref": "#/definitions/ErrorBadRequestResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized / GEN_ALL_03:Token expirado.",
+            "schema": {
+              "$ref": "#/definitions/ErrorUnauthorizedResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden / GEN_ALL_04:Token inválido.",
+            "schema": {
+              "$ref": "#/definitions/ErrorForbiddenResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error / GEN_ALL_02:Error interno del servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErrorInternalServerResponse"
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/layout/home/{productId}": {
+      "get": {
+        "tags": [
+          "Home personalizado"
+        ],
+        "summary": "Home personalizado",
+        "description": "Servicio para obtener el home personalizado por producto y segmento",
+        "operationId": "getLayout",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "Identificador del producto",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "segmentHome",
+            "in": "query",
+            "description": "Segmento para el home",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "layoutType",
+            "in": "query",
+            "description": "Tipo de layout requerido, atributo usado en Agora shop para el home de shop o el home de tiendas",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "storeId",
+            "in": "query",
+            "description": "Id de la tienda para la vista en agora shop",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok / La solicitud ha tenido éxito, se ha creado un objeto de saldos como resultado.",
+            "schema": {
+              "$ref": "#/definitions/LayoutDto"
+            }
+          },
+          "400": {
+            "description": "Bad Request / GEN_ALL_01:Sintaxis inválida en formato, tamaño, tipo de dato, valor determinado o requerido.",
+            "schema": {
+              "$ref": "#/definitions/ErrorBadRequestResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized / GEN_ALL_03:Token expirado.",
+            "schema": {
+              "$ref": "#/definitions/ErrorUnauthorizedResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden / GEN_ALL_04:Token inválido.",
+            "schema": {
+              "$ref": "#/definitions/ErrorForbiddenResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error / GEN_ALL_02:Error interno del servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErrorInternalServerResponse"
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/layout/home/cache": {
+      "delete": {
+        "tags": [
+          "Home personalizado"
+        ],
+        "summary": "Borrar home personalizado de la cahe",
+        "description": "Servicio para borrar el home personalizado por producto y segmento",
+        "operationId": "deleteLayout",
+        "responses": {
+          "200": {
+            "description": "Ok / La solicitud ha tenido éxito, se ha creado un objeto de saldos como resultado."
+          },
+          "400": {
+            "description": "Bad Request / GEN_ALL_01:Sintaxis inválida en formato, tamaño, tipo de dato, valor determinado o requerido.",
+            "schema": {
+              "$ref": "#/definitions/ErrorBadRequestResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized / GEN_ALL_03:Token expirado.",
+            "schema": {
+              "$ref": "#/definitions/ErrorUnauthorizedResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden / GEN_ALL_04:Token inválido.",
+            "schema": {
+              "$ref": "#/definitions/ErrorForbiddenResponse"
+            }
+          },
+          "500": {
+            "description": "Internal Server Error / GEN_ALL_02:Error interno del servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErrorInternalServerResponse"
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "SegmentHomeResponse": {
+      "type": "object",
+      "properties": {
+        "segmentHome": {
+          "type": "string",
+          "example": "DEFAULT"
+        }
+      }
+    },
+    "LayoutDto": {
+      "type": "object",
+      "properties": {
+        "layoutId": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "string"
+        },
+        "segmentHome": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "storeId": {
+          "type": "string"
+        },
+        "layoutType": {
+          "type": "string"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ComponentDto"
+          }
+        }
+      }
+    },
+    "ComponentDto": {
+      "type": "object",
+      "properties": {
+        "componentId": {
+          "type": "string"
+        },
+        "layoutId": {
+          "type": "string"
+        },
+        "componentType": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "data": {
+          "$ref": "#/definitions/ComponentData"
+        }
+      }
+    },
+    "ComponentData": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "bodyComponent": {
+          "type": "string"
+        },
+        "titleColor": {
+          "type": "string"
+        },
+        "subtitleColor": {
+          "type": "string"
+        },
+        "bodyColor": {
+          "type": "string"
+        },
+        "moreOptionDeeplink": {
+          "type": "string"
+        },
+        "service": {
+          "type": "string"
+        },
+        "imageComponent": {
+          "type": "string"
+        },
+        "deeplink": {
+          "type": "string"
+        },
+        "tagComponent": {
+          "type": "string"
+        },
+        "moreOptionColor": {
+          "type": "string"
+        },
+        "moreOptionTag": {
+          "type": "string"
+        },
+        "benefitType": {
+          "type": "string"
+        },
+        "showMoreOption": {
+          "type": "boolean"
+        },
+        "showDotsIndicator": {
+          "type": "boolean"
+        },
+        "isHomeBanner": {
+          "type": "boolean"
+        },
+        "bannerSubType": {
+          "type": "string"
+        }
+      }
+    },
+    "ErrorBadRequestResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "example": "GEN_ALL_01",
+          "description": "Código de sintaxis inválida en formato, tamaño, tipo de dato, valor determinado o requerido."
+        },
+        "message": {
+          "type": "string",
+          "example": "Sintaxis inválida en formato, tamaño, tipo de dato, valor determinado o requerido.",
+          "description": "Descripción de sintaxis inválida en formato, tamaño, tipo de dato, valor determinado o requerido."
+        },
+        "errors": {
+          "$ref": "#/definitions/Errors"
+        }
+      }
+    },
+    "ErrorUnauthorizedResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "example": "GEN_ALL_03",
+          "description": "Código genérico de la validacion"
+        },
+        "message": {
+          "type": "string",
+          "example": "Token expirado.",
+          "description": "Mensaje genérico de la validacion"
+        }
+      }
+    },
+    "ErrorForbiddenResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "example": "GEN_ALL_04",
+          "description": "Código genérico de la validacion"
+        },
+        "message": {
+          "type": "string",
+          "example": "Token inválido.",
+          "description": "Mensaje genérico de la validacion"
+        }
+      }
+    },
+    "ErrorInternalServerResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "example": "GEN_ALL_02",
+          "description": "Código de error de servidor interno."
+        },
+        "message": {
+          "type": "string",
+          "example": "Error interno del servidor.",
+          "description": "Descripción de error de servidor interno."
+        }
+      }
+    },
+    "Errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Error"
+      },
+      "example": [
+        {
+          "field": "field one",
+          "message": "message one"
+        },
+        {
+          "field": "field two",
+          "message": "message two"
+        }
+      ]
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string",
+          "example": "phone",
+          "description": "Fila validada"
+        },
+        "message": {
+          "type": "string",
+          "example": "Nombre completo no válido",
+          "description": "Error de fila validada"
+        }
+      }
+    }
+  }
+}
